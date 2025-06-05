@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH -J nested-conusc-era5-1.00-training
-#SBATCH -o slurm/training.%j.out
-#SBATCH -e slurm/training.%j.err
+#SBATCH -J replay-training
+#SBATCH -o training.%j.out
+#SBATCH -e training.%j.err
 #SBATCH --nodes=4
 #SBATCH --tasks-per-node=4
 #SBATCH --gpus-per-node=4
