@@ -55,7 +55,7 @@ processor:
   num_heads: 16 # GraphTransformer or Transformer only
   window_size: 512
   dropout_p: 0.0 # GraphTransformer
-  attention_implementation: flash_attention # flash_attention, scaled_dot_product_attention
+  attention_implementation: scaled_dot_product_attention # flash_attention, scaled_dot_product_attention
   qk_norm: False # Transformer and GraphTransformer only
   softcap: 0.0 # Transformer only
   use_alibi_slopes: False # Transformer only
@@ -108,23 +108,7 @@ bounding:
   - _target_: anemoi.models.layers.bounding.ReluBounding #[0, infinity)
     variables:
     - spfh2m
-    - spfh_25
-    - spfh_75
-    - spfh_125
-    - spfh_175
-    - spfh_225
-    - spfh_275
-    - spfh_325
-    - spfh_375
-    - spfh_425
-    - spfh_475
-    - spfh_525
-    - spfh_575
-    - spfh_625
-    - spfh_675
-    - spfh_725
-    - spfh_775
-    - spfh_825
-    - spfh_875
-    - spfh_925
-    - spfh_975
+    - spfh_100
+    - spfh_350
+    - spfh_650
+    - spfh_900

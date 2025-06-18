@@ -27,26 +27,10 @@ normalizer:
   default: mean-std
   std:
     - spfh2m
-    - spfh_25
-    - spfh_75
-    - spfh_125
-    - spfh_175
-    - spfh_225
-    - spfh_275
-    - spfh_325
-    - spfh_375
-    - spfh_425
-    - spfh_475
-    - spfh_525
-    - spfh_575
-    - spfh_625
-    - spfh_675
-    - spfh_725
-    - spfh_775
-    - spfh_825
-    - spfh_875
-    - spfh_925
-    - spfh_975
+    - spfh_100
+    - spfh_350
+    - spfh_650
+    - spfh_900
   max:
     - hgtsfc_static
   none:

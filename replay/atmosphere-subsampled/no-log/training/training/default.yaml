@@ -134,9 +134,9 @@ variable_loss_scaling:
     tmp2m   : 1.
 
 metrics:
-- tmp_825
-- ugrd_825
-- vgrd_825
+- tmp_900
+- ugrd_900
+- vgrd_900
 
 # for pressure level scaling, see options here:
 # https://github.com/ecmwf/anemoi-core/blob/main/training/src/anemoi/training/data/scaling.py

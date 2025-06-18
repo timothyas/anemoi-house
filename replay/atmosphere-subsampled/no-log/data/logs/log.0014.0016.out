@@ -1,0 +1,117 @@
+[7 s] [INFO   ] 
+MPITopology Summary
+-------------------
+comm: MPI_COMM_WORLD
+rank              : 14
+size              : 16
+pid               : 37750
+log_dir           : ./logs
+logfile           : ./logs/log.0014.0016.out
+Thread Support
+required_level    : 3
+provided_level    : 3
+
+[10 s] [INFO   ] 
+Source: GCSReplayAtmosphere
+---------------------------
+time              : DatetimeIndex(['1994-01-01 00:00:00', '1994-01-01 03:00:00',
+               '1994-01-01 06:00:00', '1994-01-01 09:00:00',
+               '1994-01-01 12:00:00', '1994-01-01 15:00:00',
+               '1994-01-01 18:00:00', '1994-01-01 21:00:00',
+               '1994-01-02 00:00:00', '1994-01-02 03:00:00',
+               ...
+               '1994-03-30 18:00:00', '1994-03-30 21:00:00',
+               '1994-03-31 00:00:00', '1994-03-31 03:00:00',
+               '1994-03-31 06:00:00', '1994-03-31 09:00:00',
+               '1994-03-31 12:00:00', '1994-03-31 15:00:00',
+               '1994-03-31 18:00:00', '1994-03-31 21:00:00'],
+              dtype='datetime64[ns]', length=720, freq='3h')
+variables         : ['ugrd', 'vgrd', 'dzdt', 'tmp', 'spfh', 'pressfc', 'ugrd10m', 'vgrd10m', 'tmp2m', 'spfh2m', 'land_static', 'hgtsfc_static', 'delz']
+levels            : None
+use_nearest_levels: False
+slices            : {}
+
+[11 s] [INFO   ] 
+Transformations
+---------------
+options
+    fv_vertical_regrid: {'weight_var': 'delz', 'interfaces': [0, 200, 500, 800, 1000], 'use_nearest_interfaces': True, 'keep_weight_var': False}
+
+[11 s] [INFO   ] 
+Target: Anemoi
+--------------
+store_path        : ./dataset.zarr
+forcings          : ['cos_latitude', 'sin_latitude', 'cos_longitude', 'sin_longitude', 'cos_julian_day', 'sin_julian_day', 'cos_local_time', 'sin_local_time', 'insolation']
+chunks
+    time          : 1
+    variable      : -1
+    ensemble      : 1
+    cell          : -1
+rename
+    
+
+[11 s] [INFO   ] 
+Mover: MPIDataMover
+-------------------
+local_batch_index : 14
+data_per_process  : 01
+batch_size        : 16
+Total Samples     : 720
+Total Batches     : 45
+sample_dims       : ('time',)
+
+[18 s] [INFO   ] Done with batch 1 / 45
+[23 s] [INFO   ] Done with batch 2 / 45
+[28 s] [INFO   ] Done with batch 3 / 45
+[32 s] [INFO   ] Done with batch 4 / 45
+[36 s] [INFO   ] Done with batch 5 / 45
+[39 s] [INFO   ] Done with batch 6 / 45
+[43 s] [INFO   ] Done with batch 7 / 45
+[48 s] [INFO   ] Done with batch 8 / 45
+[50 s] [INFO   ] Done with batch 9 / 45
+[54 s] [INFO   ] Done with batch 10 / 45
+[58 s] [INFO   ] Done with batch 11 / 45
+[66 s] [INFO   ] Done with batch 12 / 45
+[73 s] [INFO   ] Done with batch 13 / 45
+[81 s] [INFO   ] Done with batch 14 / 45
+[88 s] [INFO   ] Done with batch 15 / 45
+[95 s] [INFO   ] Done with batch 16 / 45
+[101 s] [INFO   ] Done with batch 17 / 45
+[105 s] [INFO   ] Done with batch 18 / 45
+[109 s] [INFO   ] Done with batch 19 / 45
+[112 s] [INFO   ] Done with batch 20 / 45
+[117 s] [INFO   ] Done with batch 21 / 45
+[122 s] [INFO   ] Done with batch 22 / 45
+[125 s] [INFO   ] Done with batch 23 / 45
+[128 s] [INFO   ] Done with batch 24 / 45
+[131 s] [INFO   ] Done with batch 25 / 45
+[135 s] [INFO   ] Done with batch 26 / 45
+[139 s] [INFO   ] Done with batch 27 / 45
+[143 s] [INFO   ] Done with batch 28 / 45
+[148 s] [INFO   ] Done with batch 29 / 45
+[151 s] [INFO   ] Done with batch 30 / 45
+[155 s] [INFO   ] Done with batch 31 / 45
+[158 s] [INFO   ] Done with batch 32 / 45
+[161 s] [INFO   ] Done with batch 33 / 45
+[165 s] [INFO   ] Done with batch 34 / 45
+[169 s] [INFO   ] Done with batch 35 / 45
+[173 s] [INFO   ] Done with batch 36 / 45
+[175 s] [INFO   ] Done with batch 37 / 45
+[178 s] [INFO   ] Done with batch 38 / 45
+[182 s] [INFO   ] Done with batch 39 / 45
+[185 s] [INFO   ] Done with batch 40 / 45
+[188 s] [INFO   ] Done with batch 41 / 45
+[191 s] [INFO   ] Done with batch 42 / 45
+[193 s] [INFO   ] Done with batch 43 / 45
+[196 s] [INFO   ] Done with batch 44 / 45
+[199 s] [INFO   ] Done with batch 45 / 45
+[204 s] [INFO   ] Done moving the data
+
+[204 s] [INFO   ] Aggregating statistics
+[204 s] [INFO   ] Anemoi.aggregate_stats: Performing local computations
+[204 s] [INFO   ] Anemoi.aggregate_stats: Communicating results to root
+[205 s] [INFO   ] Anemoi.aggregate_stats: ... done communicating
+[206 s] [INFO   ] Done aggregating statistics
+
+[206 s] [INFO   ] Storing the recipe and anything from the 'attrs' section in zarr store attributes
+[206 s] [INFO   ] 🚀🚀🚀 Dataset is ready for launch at: ./dataset.zarr
