@@ -184,7 +184,7 @@ graph:
     target_name: ${graph.hidden}
     edge_builders:
     - _target_: anemoi.graphs.edges.CutOffEdges
-      cutoff_factor: 0.6
+      cutoff_factor: 0.7
       source_mask_attr_name: null
       target_mask_attr_name: null
     attributes: ${graph.attributes.edges}
