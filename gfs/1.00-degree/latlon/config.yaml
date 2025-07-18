@@ -248,7 +248,7 @@ model:
       - q_1000
 
 training:
-  max_steps: 30_000
+  max_steps: 300_000
   # LR = local_rate * num_gpus_per_node * num_nodes / gpus_per_model
   #    = local_rate * total_gpus / gpus_per_model
   lr:
