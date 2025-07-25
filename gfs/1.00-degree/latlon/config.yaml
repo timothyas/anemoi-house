@@ -66,9 +66,13 @@ dataloader:
     validation: 1
     test: 1
   num_workers:
-    training: 4
-    validation: 4
-    test: 4
+    training: 8
+    validation: 8
+    test: 1
+  limit_batches:
+    training: null
+    validation: null
+    test: 1
   dataset:
     # Global forcing
     join:
@@ -185,8 +189,8 @@ graph:
   - source_name: ${graph.data}
     target_name: ${graph.hidden}
     edge_builders:
-    - _target_: anemoi.graphs.edges.CutOffEdges
-      cutoff_factor: 0.6
+    - _target_: anemoi.graphs.edges.KNNEdges
+      num_nearest_neighbours: 4
       source_mask_attr_name: null
       target_mask_attr_name: null
     attributes: ${graph.attributes.edges}
@@ -208,7 +212,7 @@ graph:
     edges:
       edge_length:
         _target_: anemoi.graphs.edges.attributes.EdgeLength
-        norm: unit-std
+        norm: unit-max
       edge_dirs:
         _target_: anemoi.graphs.edges.attributes.EdgeDirection
         norm: unit-std
@@ -221,14 +225,12 @@ hardware:
     output: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/1.00-degree/latlon/
   files:
     graph: graph.2degree.pt
-    npz_file: latentx2.global1degree.npz
+    npz_file: latentx2.global1degree.sorted.npz
     global_analysis: gfs.analysis.zarr
     global_forecast: gfs.forecast.zarr
 
 model:
   num_channels: 512 #???
-  processor:
-    window_size: 512 #??? unclear if all processor options need to be added here or not
   bounding:
     - _target_: anemoi.models.layers.bounding.ReluBounding #[0, infinity)
       variables:
@@ -265,6 +267,10 @@ training:
     - t_850
     - u_850
     - v_850
+  training_loss:
+    _target_: anemoi.training.losses.MSELoss
+    scalers: ["general_variable", "nan_mask_weights", "node_weights"]
+    ignore_nans: False
   scalers:
     general_variable:
       _target_: anemoi.training.losses.scalers.GeneralVariableLossScaler
@@ -280,20 +286,3 @@ training:
         u10: 0.1
         v10: 0.1
         accum_tp: 0.025
-
-    ## tendency scalers
-    ## scale the prognostic losses by the stdev of the variable tendencies (e.g. the 6-hourly differences of the data)
-    ## useful if including slow vs fast evolving variables in the training (e.g. Land/Ocean vs Atmosphere)
-    ## if using this option 'variable_loss_scalings' should all be set close to 1.0 for prognostic variables
-    #stdev_tendency:
-    #  _target_: anemoi.training.losses.scalers.StdevTendencyScaler
-
-    #var_tendency:
-    #  _target_: anemoi.training.losses.scalers.VarTendencyScaler
-
-    # Scalers from node attributes
-    node_weights:
-      _target_: anemoi.training.losses.scalers.GraphNodeAttributeScaler
-      nodes_name: ${graph.data}
-      nodes_attribute_name: area_weight
-      norm: unit-sum

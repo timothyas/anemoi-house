@@ -16,3 +16,28 @@ anemoi-transform==0.1.13
 ```
 srun --jobid $SLURM_JOB_ID ~/anemoi-house/slurm2ddp.sh anemoi-training train --config-name=config
 ```
+
+## Speed Tests
+
+Things ran way slower than expected, so first, reduced the size of the latent
+mesh (graph edges), and sorted the nodes and edges.
+
+Then tested the following parameters:
+* Specify CPUs in SLURM job via `cpus-per-task`:
+    * not specifying this (i.e., removing this line from the slurm job)
+      had the biggest benefit of any of these tests, speedup of 20%
+* `prefetch_factor`
+    * 2 vs 4, 2 is faster by about 1.5 min
+* `num_workers`: (training, validation, testing):
+    * (8, 8, 1) about ~50sec faster than (8, 4, 4)
+    * (4, 4, 1) ... a little bit worse but probably insignificant (40 sec)
+* `limit_batches` setting test to 1, unclear impact, but may as well.
+* Larger batch size:
+    * My default (1, 1, 1) about 1min faster than (2, 4, 1)
+* Turn off system diagnostics
+    * Made no difference, and looks like eyeball stdev is about 1min here
+
+
+
+Other things to try:
+* Combine the anemoi datasets...
