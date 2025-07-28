@@ -73,17 +73,7 @@ dataloader:
     training: null
     validation: null
     test: 1
-  dataset:
-    # Global forcing
-    join:
-      - dataset: ${hardware.paths.data}/${hardware.files.global_analysis}
-        set_missing_dates:
-          - 2015-08-02T12:00:00
-          - 2016-10-22T12:00:00
-      - dataset: ${hardware.paths.data}/${hardware.files.global_forecast}
-        set_missing_dates:
-          - 2015-08-02T12:00:00
-          - 2016-10-22T12:00:00
+  dataset: ${hardware.paths.data}/${hardware.files.global_dataset}
   training:
     start: 2015-02-01
     end: 2023-01-31
@@ -226,11 +216,9 @@ hardware:
   files:
     graph: graph.2degree.pt
     npz_file: latentx2.global1degree.sorted.npz
-    global_analysis: gfs.analysis.zarr
-    global_forecast: gfs.forecast.zarr
+    global_dataset: gfs.zarr
 
 model:
-  num_channels: 512 #???
   bounding:
     - _target_: anemoi.models.layers.bounding.ReluBounding #[0, infinity)
       variables:
@@ -250,7 +238,8 @@ model:
       - q_1000
 
 training:
-  max_steps: 300_000
+  max_steps: null
+  max_epochs: 300
   # LR = local_rate * num_gpus_per_node * num_nodes / gpus_per_model
   #    = local_rate * total_gpus / gpus_per_model
   lr:

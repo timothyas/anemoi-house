@@ -41,3 +41,13 @@ Then tested the following parameters:
 
 Other things to try:
 * Combine the anemoi datasets...
+
+## Max steps vs epochs
+
+Note that I initially was training to 300k iterations, but this cycles through
+the dataset more than we need.
+Looking at the validation loss, it starts to tail off at 300 epochs, and even
+starts to increase a bit afterward.
+So, 300 epochs seems like a reasonable stopping point
+
+![loss][../figures/gfs_onedegree_loss.jpeg]
