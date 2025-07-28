@@ -63,7 +63,7 @@ Looking at the validation loss, it starts to tail off at 300 epochs, and even
 starts to increase a bit afterward.
 So, 300 epochs seems like a reasonable stopping point
 
-![loss][../figures/gfs_onedegree_loss.jpeg]
+<img src="../figures/gfs_onedegree_loss.jpeg" style="width:50%">
 
 
 ## Speed Tests
