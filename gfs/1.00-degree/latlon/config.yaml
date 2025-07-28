@@ -84,6 +84,13 @@ dataloader:
     end: 2024-01-31
 
 diagnostics:
+  checkpoint:
+    every_n_minutes:
+      save_frequency: 60
+      num_models_saved: 2
+    every_n_epochs:
+      save_frequency: 3
+      num_models_saved: -1
   log:
     wandb:
       enabled: False
