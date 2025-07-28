@@ -60,7 +60,6 @@ data:
       - lsm
 
 dataloader:
-  read_group_size: 1
   batch_size:
     training: 1
     validation: 1
@@ -219,6 +218,7 @@ hardware:
     global_dataset: gfs.zarr
 
 model:
+  num_channels: 512
   bounding:
     - _target_: anemoi.models.layers.bounding.ReluBounding #[0, infinity)
       variables:
@@ -238,7 +238,7 @@ model:
       - q_1000
 
 training:
-  max_steps: null
+  max_steps: 217_000
   max_epochs: 300
   # LR = local_rate * num_gpus_per_node * num_nodes / gpus_per_model
   #    = local_rate * total_gpus / gpus_per_model

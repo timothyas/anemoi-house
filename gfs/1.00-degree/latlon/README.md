@@ -1,5 +1,7 @@
 # Latitude-Longitude Latent Mesh
+
 ## Training and Inference
+
 
 
 ```
@@ -16,6 +18,53 @@ anemoi-transform==0.1.13
 ```
 srun --jobid $SLURM_JOB_ID ~/anemoi-house/slurm2ddp.sh anemoi-training train --config-name=config
 ```
+
+## TODO
+
+- [ ] Train model with "default" scalings, `num_channels=512`, merged dataset
+    * will get converged model at 300 epochs
+    * show speed from merged dataset
+- [ ] Same, `num_channels=1024`
+    * Is this any better at 1 degree?
+- [ ] Test loss scaling schemes
+
+
+## Loss Scaling
+
+
+## Model Size
+
+How does 1 degree skill change with number of channels?
+
+With `num_channels = 1024`
+
+
+```
+  | Name    | Type                 | Params | Mode
+---------------------------------------------------------
+0 | model   | AnemoiModelInterface | 232 M  | train
+1 | loss    | MSELoss              | 0      | train
+2 | metrics | ModuleDict           | 0      | train
+---------------------------------------------------------
+232 M     Trainable params
+0         Non-trainable params
+232 M     Total params
+928.088   Total estimated model params size (MB)
+278       Modules in train mode
+0         Modules in eval mode
+```
+
+
+## Max steps vs epochs
+
+Note that I initially was training to 300k iterations, but this cycles through
+the dataset more than we need.
+Looking at the validation loss, it starts to tail off at 300 epochs, and even
+starts to increase a bit afterward.
+So, 300 epochs seems like a reasonable stopping point
+
+![loss][../figures/gfs_onedegree_loss.jpeg]
+
 
 ## Speed Tests
 
@@ -42,12 +91,7 @@ Then tested the following parameters:
 Other things to try:
 * Combine the anemoi datasets...
 
-## Max steps vs epochs
 
-Note that I initially was training to 300k iterations, but this cycles through
-the dataset more than we need.
-Looking at the validation loss, it starts to tail off at 300 epochs, and even
-starts to increase a bit afterward.
-So, 300 epochs seems like a reasonable stopping point
 
-![loss][../figures/gfs_onedegree_loss.jpeg]
+
+
