@@ -86,10 +86,10 @@ dataloader:
 diagnostics:
   checkpoint:
     every_n_minutes:
-      save_frequency: 60
-      num_models_saved: 2
+      save_frequency: null
+      num_models_saved: 0
     every_n_epochs:
-      save_frequency: 3
+      save_frequency: 10
       num_models_saved: -1
   log:
     wandb:
@@ -115,8 +115,8 @@ diagnostics:
       http_max_retries: 35
   plot:
     frequency:
-      batch: 30_000
-      epoch: 5
+      batch: 300_000
+      epoch: 300
     parameters:
       - gh_500
       - t_850
@@ -218,7 +218,7 @@ hardware:
   paths:
     data: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/1.00-degree/data
     graph: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/1.00-degree/latlon/
-    output: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/1.00-degree/latlon/
+    output: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/1.00-degree/latlon/epochs300/
   files:
     graph: graph.2degree.pt
     npz_file: latentx2.global1degree.sorted.npz
@@ -226,6 +226,8 @@ hardware:
 
 model:
   num_channels: 512
+  processor:
+    window_size: 2160
   bounding:
     - _target_: anemoi.models.layers.bounding.ReluBounding #[0, infinity)
       variables:
