@@ -4,6 +4,7 @@
 
 
 
+### 300 epochs
 ```
 anemoi-datasets==0.5.26
 anemoi-core ... commit=5dd32ca1 + feature/aml
@@ -14,6 +15,20 @@ anemoi-inference = d9efac5 ... 0.6.3+
 anemoi-utils ... fdf0fc8 ... 0.4.28+
 anemoi-transform==0.1.13
 ```
+
+### 30k steps
+
+
+(and debug.yaml) This one is with:
+
+```
+anemoi-datasets 410d1e
+anemoi-core feature/azure-mlflow (rebased on top of 8e97af)
+anemoi-inference 0.7.1
+anemoi-utils 732182
+anemoi-transforms 32cb93
+```
+
 
 ```
 srun --jobid $SLURM_JOB_ID ~/anemoi-house/slurm2ddp.sh anemoi-training train --config-name=config
