@@ -69,8 +69,8 @@ dataloader:
     validation: 4
     test: 1
   limit_batches:
-    training: null
-    validation: null
+    training: 100
+    validation: 100
     test: 1
   dataset: ${hardware.paths.data}/${hardware.files.global_dataset}
   training:
@@ -97,16 +97,16 @@ diagnostics:
       entity: null
     mlflow:
       enabled: True
-      offline: False
+      offline: True
       authentication: False
       log_model: False
       tracking_uri: null
-      experiment_name: 'gfs-quarter-degree'
+      experiment_name: 'gfs-quarter-degree-speedtest'
       project_name: 'anemoi-house'
-      use_azure: True
+      use_azure: False
       system: True
       terminal: True
-      run_name: latlon-steps030k
+      run_name: 02gpm_04tw_04vw
       on_resume_create_child: True
       expand_hyperparams: # Which keys in hyperparams to expand
         - config
@@ -167,11 +167,11 @@ graph:
         norm: unit-std
 
 hardware:
-  num_gpus_per_model: 4
+  num_gpus_per_model: 2
   paths:
     data: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/0.25-degree/data
     graph: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/0.25-degree/latlon/
-    output: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/0.25-degree/latlon/steps030k/
+    output: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/0.25-degree/latlon/speedtest/
   files:
     graph: graph.0.5degree.pt
     npz_file: latentx2.fromdata.global_quarter_degree.sorted.npz
@@ -200,7 +200,7 @@ model:
       - q_1000
 
 training:
-  max_steps: 30_000
+  max_steps: 500
   # LR = local_rate * num_gpus_per_node * num_nodes / gpus_per_model
   #    = local_rate * total_gpus / gpus_per_model
   lr:
