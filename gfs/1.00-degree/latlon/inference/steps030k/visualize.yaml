@@ -1,0 +1,27 @@
+forecast_path: ${SCRATCH}/anemoi-house/gfs/1.00-degree/latlon/steps030k/inference-validation
+lead_time: 240h
+start_date: 2023-03-09T06
+end_date: 2023-03-19T06
+
+verification_dataset_path: ${SCRATCH}/anemoi-house/gfs/1.00-degree/data/gfs.zarr
+
+output_path: ${SCRATCH}/anemoi-house/gfs/0.25-degree/latlon/steps030k/inference-validation
+
+model_type: global
+target_name: "GFS fhr00"
+model_name: "GFS-EAGLE 1.00deg"
+vars_of_interest:
+  - t2m
+  - sh2
+  - 10m_wind_speed
+  - accum_tp
+  - t
+
+levels:
+  - 500
+  - 850
+
+per_variable_kwargs:
+  t:
+    vmin: -20
+    vmax: 20

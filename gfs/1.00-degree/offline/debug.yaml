@@ -99,7 +99,7 @@ diagnostics:
       enabled: True
       offline: True
       authentication: False
-      log_model: False
+      log_model: "all"
       tracking_uri: null
       experiment_name: 'anemoi-debug-offline'
       project_name: 'anemoi-house-offline'
@@ -217,7 +217,7 @@ hardware:
   paths:
     data: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/1.00-degree/data
     graph: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/1.00-degree/latlon/
-    output: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/1.00-degree/offline/
+    output: ${oc.decode:${oc.env:SCRATCH}}/anemoi-house/gfs/1.00-degree/offline-logmodel-all/
   files:
     graph: graph.2degree.pt
     npz_file: latentx2.global1degree.sorted.npz
