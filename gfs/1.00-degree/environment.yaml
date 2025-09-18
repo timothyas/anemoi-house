@@ -1,0 +1,25 @@
+name: eagle
+channels:
+    - conda-forge
+dependencies:
+    - python=3.11
+    - ufs2arco=*=nompi*
+    # nice to have
+    - jupyter
+    - matplotlib
+    - cartopy
+    - ipython
+    - ipykernel
+    - cmocean
+    - pip
+    - pip:
+      - torch<2.7
+      - anemoi-datasets==0.5.26
+      - anemoi-graphs==0.6.4
+      - anemoi-models==0.9.2
+      - anemoi-training==0.6.2
+      - anemoi-inference==0.7.1
+      - anemoi-utils==0.4.35
+      - anemoi-transform==0.1.16
+      - git+https://github.com/timothyas/xmovie.git@feature/gif-scale
+      - eagle-tools
