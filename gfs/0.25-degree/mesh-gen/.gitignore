@@ -1,3 +1,4 @@
 figures*/
 *.txt
 *.pt
+cache/
