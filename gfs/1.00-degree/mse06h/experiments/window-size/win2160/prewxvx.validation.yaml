@@ -2,15 +2,18 @@ forecast_path: ${SCRATCH}/anemoi-house/gfs/1.00-degree/mse06h/experiments/window
 output_path: ${SCRATCH}/anemoi-house/gfs/1.00-degree/mse06h/experiments/window-size/win2160/inference-validation
 model_type: global
 lead_time: 240
+use_mpi: True
+
 vars_of_interest:
-  - t2m
   - gh
-  - sp
-  - t
   - u
-  - u10
   - v
+  - t
+  - q
+  - sp
+  - u10
   - v10
+  - t2m
 
 levels:
   - 250
