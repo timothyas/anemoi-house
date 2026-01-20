@@ -15,3 +15,23 @@ Fixing the following parameters (at least):
 * Training steps = 30k
 * "Empirical" loss weights per-variable group, essentially following AIFS
 * window size
+
+
+## Window Size = 17280
+
+```
+┏━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━┓
+┃   ┃ Name    ┃ Type                 ┃ Params ┃ Mode  ┃ FLOPs ┃
+┡━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━┩
+│ 0 │ model   │ AnemoiModelInterface │  101 M │ train │     0 │
+│ 1 │ loss    │ MSELoss              │      0 │ train │     0 │
+│ 2 │ metrics │ ModuleDict           │      0 │ train │     0 │
+└───┴─────────┴──────────────────────┴────────┴───────┴───────┘
+Trainable params: 101 M
+Non-trainable params: 0
+Total params: 101 M
+Total estimated model params size (MB): 404
+Modules in train mode: 275
+Modules in eval mode: 0
+Total FLOPs: 0
+```
