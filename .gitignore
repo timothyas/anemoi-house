@@ -1,4 +1,5 @@
 # Custom additions
+log.wxvx.*.out*
 *.out
 *.err
 *.npz
