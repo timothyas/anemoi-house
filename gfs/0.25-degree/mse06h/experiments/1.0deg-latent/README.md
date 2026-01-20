@@ -61,3 +61,23 @@ Note that this contains isolated nodes
 280       Modules in train mode
 0         Modules in eval mode
 ```
+
+
+## Updated 1x16 encoders ...
+
+```
+┏━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━┓
+┃   ┃ Name    ┃ Type                 ┃ Params ┃ Mode  ┃ FLOPs ┃
+┡━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━┩
+│ 0 │ model   │ AnemoiModelInterface │ 93.2 M │ train │     0 │
+│ 1 │ loss    │ MSELoss              │      0 │ train │     0 │
+│ 2 │ metrics │ ModuleDict           │      0 │ train │     0 │
+└───┴─────────┴──────────────────────┴────────┴───────┴───────┘
+Trainable params: 93.2 M
+Non-trainable params: 0
+Total params: 93.2 M
+Total estimated model params size (MB): 372
+Modules in train mode: 275
+Modules in eval mode: 0
+Total FLOPs: 0
+```
